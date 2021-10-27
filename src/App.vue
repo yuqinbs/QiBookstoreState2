@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <app-header></app-header>
-    <router-view :key="$route.fullPath"></router-view>
+    <router-view id="router-view" :key="$route.fullPath"></router-view>
     <app-footer></app-footer>
   </div>
 </template>
@@ -15,6 +15,9 @@ export default {
   components: {
     AppHeader,
     AppFooter,
+  },
+  created: function (){
+    this.$store.dispatch("fetchCategories")
   },
 };
 </script>

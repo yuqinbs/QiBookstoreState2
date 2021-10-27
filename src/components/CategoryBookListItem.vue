@@ -18,7 +18,7 @@
         </div>
       </div>
       <router-link to="./">
-        <button class="cart-button">Add to Cart</button>
+        <button @click="addToCart(book)" class="cart-button">Add to Cart</button>
       </router-link>
       <router-link to="./" v-if="book.isPublic">
         <button class="buy-now-button">Buy Now</button>
@@ -41,6 +41,9 @@ export default {
       let name = book.title.toLowerCase();
       name = name.replace(/ /g, "-");
       return `${name}.jpg`;
+    },
+    addToCart: function(book) {
+      this.$store.dispatch("addToCart", book);
     },
   },
 };

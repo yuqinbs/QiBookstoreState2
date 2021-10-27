@@ -19,9 +19,9 @@
         ></path>
       </svg>
       <ul>
-        <template v-for="category in categories">
+        <template v-for="category in $store.state.categories">
           <li
-            v-if="category.name === $route.params.name"
+            v-if="category.name === $store.state.selectedCategoryName"
             :key="category.categoryID"
             class="unselected-category"
           >
@@ -39,33 +39,9 @@
 </template>
 
 <script>
-import ApiService from "@/services/ApiService";
 
 export default {
-  name: "HeaderDropdownMenu",
-  data: function () {
-    return {
-      categories: [],
-    };
-  },
-  created: function () {
-    console.log("Begin fetchCategories...");
-    this.fetchCategories();
-    console.log("End fetchCategories...");
-  },
-  methods: {
-    fetchCategories() {
-      const vm = this;
-      ApiService.fetchCategories()
-        .then((data) => {
-          console.log("Data: " + data);
-          vm.categories = data;
-        })
-        .catch((reason) => {
-          console.log("Error: " + reason);
-        });
-    },
-  },
+  name: "HeaderDropdownMenu"
 };
 </script>
 
